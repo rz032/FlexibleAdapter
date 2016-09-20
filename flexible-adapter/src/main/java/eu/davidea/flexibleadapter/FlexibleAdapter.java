@@ -541,7 +541,7 @@ public class FlexibleAdapter<T extends IFlexible>
 	 * @since 1.0.0
 	 */
 	@Override
-	public final int getItemCount() {
+	public int getItemCount() {
 		return mItems != null ? mItems.size() : 0;
 	}
 

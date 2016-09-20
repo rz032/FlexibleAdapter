@@ -17,6 +17,7 @@ package eu.davidea.flexibleadapter.items;
 
 import java.util.List;
 
+import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.viewholders.ExpandableViewHolder;
 
 /**
@@ -40,9 +41,9 @@ public interface IExpandable<VH extends ExpandableViewHolder, S extends IFlexibl
 	/* EXPANDABLE METHODS */
 	/*--------------------*/
 
-	boolean isExpanded();
+	boolean isExpanded(FlexibleAdapter adapter);
 
-	void setExpanded(boolean expanded);
+	void setExpanded(FlexibleAdapter adapter, boolean expanded);
 
 	/**
 	 * Establish the level of the expansion of this type of item in case of multi level expansion.
