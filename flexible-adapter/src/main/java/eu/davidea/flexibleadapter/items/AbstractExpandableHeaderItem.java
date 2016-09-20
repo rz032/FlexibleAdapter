@@ -15,6 +15,7 @@
  */
 package eu.davidea.flexibleadapter.items;
 
+import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.viewholders.ExpandableViewHolder;
 
 /**
@@ -40,8 +41,15 @@ public abstract class AbstractExpandableHeaderItem<VH extends ExpandableViewHold
 	 */
 	public AbstractExpandableHeaderItem() {
 		setHidden(false);
-		setExpanded(true);
+		setExpanded(null, true);
 		setSelectable(false);
 	}
+
+	public AbstractExpandableHeaderItem(FlexibleAdapter adapter) {
+		setHidden(false);
+		setExpanded(adapter, true);
+		setSelectable(false);
+	}
+
 
 }

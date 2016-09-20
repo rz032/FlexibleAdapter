@@ -36,12 +36,12 @@ public class ExpandableLevel1Item
 	}
 
 	@Override
-	public boolean isExpanded() {
+	public boolean isExpanded(FlexibleAdapter adapter) {
 		return mExpanded;
 	}
 
 	@Override
-	public void setExpanded(boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
 		mExpanded = expanded;
 	}
 

@@ -3,6 +3,7 @@ package eu.davidea.samples.flexibleadapter.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.flexibleadapter.items.IExpandable;
 
 /**
@@ -31,12 +32,12 @@ public class ExpandableItem extends SimpleItem
 	}
 
 	@Override
-	public boolean isExpanded() {
+	public boolean isExpanded(FlexibleAdapter adapter) {
 		return mExpanded;
 	}
 
 	@Override
-	public void setExpanded(boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
 		mExpanded = expanded;
 	}
 

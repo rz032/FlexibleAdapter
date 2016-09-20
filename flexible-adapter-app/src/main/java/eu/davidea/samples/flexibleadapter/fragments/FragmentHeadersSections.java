@@ -147,7 +147,7 @@ public class FragmentHeadersSections extends AbstractFragment
 			case 2: //Expandable Header
 				id = mAdapter.getItemCountOfTypes(R.layout.recycler_expandable_header_item) + 1;
 				ExpandableHeaderItem expandableHeader = DatabaseService.newExpandableSectionItem(id);
-				expandableHeader.setExpanded(false);
+				expandableHeader.setExpanded(mAdapter, false);
 				mAdapter.addSection(expandableHeader, referenceHeader);
 				scrollTo = mAdapter.getGlobalPositionOf(expandableHeader);
 				break;

@@ -34,7 +34,7 @@ public class AnimatorExpandableItem
 	public AnimatorExpandableItem(String id) {
 		super();
 		this.id = id;
-		setExpanded(false);//Start collapsed
+		setExpanded(null, false);//Start collapsed
 		setSwipeable(true);
 	}
 
@@ -94,7 +94,7 @@ public class AnimatorExpandableItem
 			holder.mTitle.setText(getTitle());
 		}
 		setSubtitle(String.valueOf(adapter.getCurrentChildren(this).size()) +
-				" subItems (" + (isExpanded() ? "expanded" : "collapsed") + ")");
+				" subItems (" + (isExpanded(adapter) ? "expanded" : "collapsed") + ")");
 		holder.mSubtitle.setText(getSubtitle());
 	}
 

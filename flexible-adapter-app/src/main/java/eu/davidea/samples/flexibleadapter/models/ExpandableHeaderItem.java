@@ -42,18 +42,18 @@ public class ExpandableHeaderItem
 		setDraggable(true);
 		//We start with header shown and expanded
 		setHidden(false);
-		setExpanded(true);
+		setExpanded(null, true);
 		//NOT selectable (otherwise ActionMode will be activated on long click)!
 		setSelectable(false);
 	}
 
 	@Override
-	public boolean isExpanded() {
+	public boolean isExpanded(FlexibleAdapter adapter) {
 		return mExpanded;
 	}
 
 	@Override
-	public void setExpanded(boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
 		mExpanded = expanded;
 	}
 
@@ -114,7 +114,7 @@ public class ExpandableHeaderItem
 			holder.mTitle.setText(getTitle());
 		}
 		setSubtitle(String.valueOf(adapter.getCurrentChildren(this).size()) +
-				" subItems (" + (isExpanded() ? "expanded" : "collapsed") + ")");
+				" subItems (" + (isExpanded(adapter) ? "expanded" : "collapsed") + ")");
 		holder.mSubtitle.setText(getSubtitle());
 	}
 

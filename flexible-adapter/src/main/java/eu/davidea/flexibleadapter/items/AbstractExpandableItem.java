@@ -18,6 +18,7 @@ package eu.davidea.flexibleadapter.items;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.viewholders.ExpandableViewHolder;
 
 /**
@@ -46,12 +47,12 @@ public abstract class AbstractExpandableItem<VH extends ExpandableViewHolder, S 
 	/*--------------------*/
 
 	@Override
-	public boolean isExpanded() {
+	public boolean isExpanded(FlexibleAdapter adapter) {
 		return mExpanded;
 	}
 
 	@Override
-	public void setExpanded(boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
 		this.mExpanded = expanded;
 	}
 

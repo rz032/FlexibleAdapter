@@ -42,18 +42,18 @@ public class ExpandableLevel0Item
 		super(id);
 		//We start with header shown and expanded
 		setHidden(false);
-		setExpanded(true);
+		setExpanded(null, true);
 		//NOT selectable (otherwise ActionMode will be activated on long click)!
 		setSelectable(false);
 	}
 
 	@Override
-	public boolean isExpanded() {
+	public boolean isExpanded(FlexibleAdapter adapter) {
 		return mExpanded;
 	}
 
 	@Override
-	public void setExpanded(boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
 		mExpanded = expanded;
 	}
 
