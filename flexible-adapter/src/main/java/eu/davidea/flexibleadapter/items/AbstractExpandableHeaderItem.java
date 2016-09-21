@@ -41,13 +41,13 @@ public abstract class AbstractExpandableHeaderItem<VH extends ExpandableViewHold
 	 */
 	public AbstractExpandableHeaderItem() {
 		setHidden(false);
-		setExpanded(null, true);
+		setExpanded(null, -1, true);
 		setSelectable(false);
 	}
 
 	public AbstractExpandableHeaderItem(FlexibleAdapter adapter) {
 		setHidden(false);
-		setExpanded(adapter, true);
+		setExpanded(adapter, -1, true);
 		setSelectable(false);
 	}
 

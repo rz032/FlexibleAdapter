@@ -12,82 +12,82 @@ import eu.davidea.flexibleadapter.items.IExpandable;
  * implemented methods around subItems list.
  */
 public class ExpandableItem extends SimpleItem
-		implements IExpandable<SimpleItem.ParentViewHolder, SubItem> {
+        implements IExpandable<SimpleItem.ParentViewHolder, SubItem> {
 
-	private static final long serialVersionUID = -6882745111884490060L;
+    private static final long serialVersionUID = -6882745111884490060L;
 
-	/* Flags for FlexibleAdapter */
-	private boolean mExpanded = false;
+    /* Flags for FlexibleAdapter */
+    private boolean mExpanded = false;
 
-	/* subItems list */
-	private List<SubItem> mSubItems;
+    /* subItems list */
+    private List<SubItem> mSubItems;
 
 
-	public ExpandableItem(String id) {
-		super(id);
-	}
+    public ExpandableItem(String id) {
+        super(id);
+    }
 
-	public ExpandableItem(String id, HeaderItem header) {
-		super(id, header);
-	}
+    public ExpandableItem(String id, HeaderItem header) {
+        super(id, header);
+    }
 
-	@Override
-	public boolean isExpanded(FlexibleAdapter adapter) {
-		return mExpanded;
-	}
+    @Override
+    public boolean isExpanded(FlexibleAdapter adapter) {
+        return mExpanded;
+    }
 
-	@Override
-	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
-		mExpanded = expanded;
-	}
+    @Override
+    public void setExpanded(FlexibleAdapter adapter, int position, boolean expanded) {
+        mExpanded = expanded;
+    }
 
-	@Override
-	public int getExpansionLevel() {
-		return 0;
-	}
+    @Override
+    public int getExpansionLevel() {
+        return 0;
+    }
 
-	@Override
-	public List<SubItem> getSubItems() {
-		return mSubItems;
-	}
+    @Override
+    public List<SubItem> getSubItems() {
+        return mSubItems;
+    }
 
-	public final boolean hasSubItems() {
-		return mSubItems!= null && mSubItems.size() > 0;
-	}
+    public final boolean hasSubItems() {
+        return mSubItems != null && mSubItems.size() > 0;
+    }
 
-	public boolean removeSubItem(SubItem item) {
-		return item != null && mSubItems.remove(item);
-	}
+    public boolean removeSubItem(SubItem item) {
+        return item != null && mSubItems.remove(item);
+    }
 
-	public boolean removeSubItem(int position) {
-		if (mSubItems != null && position >= 0 && position < mSubItems.size()) {
-			mSubItems.remove(position);
-			return true;
-		}
-		return false;
-	}
+    public boolean removeSubItem(int position) {
+        if (mSubItems != null && position >= 0 && position < mSubItems.size()) {
+            mSubItems.remove(position);
+            return true;
+        }
+        return false;
+    }
 
-	public void addSubItem(SubItem subItem) {
-		if (mSubItems == null)
-			mSubItems = new ArrayList<SubItem>();
-		mSubItems.add(subItem);
-	}
+    public void addSubItem(SubItem subItem) {
+        if (mSubItems == null)
+            mSubItems = new ArrayList<SubItem>();
+        mSubItems.add(subItem);
+    }
 
-	public void addSubItem(int position, SubItem subItem) {
-		if (mSubItems != null && position >= 0 && position < mSubItems.size()) {
-			mSubItems.add(position, subItem);
-		} else
-			addSubItem(subItem);
-	}
+    public void addSubItem(int position, SubItem subItem) {
+        if (mSubItems != null && position >= 0 && position < mSubItems.size()) {
+            mSubItems.add(position, subItem);
+        } else
+            addSubItem(subItem);
+    }
 
 //	@Override
 //	public int getLayoutRes() {
 //		return R.layout.recycler_expandable_row;
 //	}
 
-	@Override
-	public String toString() {
-		return "ExpandableItem[" + super.toString() + "//SubItems" + mSubItems + "]";
-	}
+    @Override
+    public String toString() {
+        return "ExpandableItem[" + super.toString() + "//SubItems" + mSubItems + "]";
+    }
 
 }

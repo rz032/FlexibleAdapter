@@ -34,7 +34,7 @@ public class AnimatorExpandableItem
 	public AnimatorExpandableItem(String id) {
 		super();
 		this.id = id;
-		setExpanded(null, false);//Start collapsed
+		setExpanded(null, -1, false);//Start collapsed
 		setSwipeable(true);
 	}
 

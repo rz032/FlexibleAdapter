@@ -42,7 +42,7 @@ public class ExpandableHeaderItem
 		setDraggable(true);
 		//We start with header shown and expanded
 		setHidden(false);
-		setExpanded(null, true);
+		setExpanded(null, -1, true);
 		//NOT selectable (otherwise ActionMode will be activated on long click)!
 		setSelectable(false);
 	}
@@ -53,7 +53,7 @@ public class ExpandableHeaderItem
 	}
 
 	@Override
-	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, int position, boolean expanded) {
 		mExpanded = expanded;
 	}
 

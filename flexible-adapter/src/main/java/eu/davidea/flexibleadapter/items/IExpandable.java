@@ -43,7 +43,7 @@ public interface IExpandable<VH extends ExpandableViewHolder, S extends IFlexibl
 
 	boolean isExpanded(FlexibleAdapter adapter);
 
-	void setExpanded(FlexibleAdapter adapter, boolean expanded);
+	void setExpanded(FlexibleAdapter adapter, int position, boolean expanded);
 
 	/**
 	 * Establish the level of the expansion of this type of item in case of multi level expansion.

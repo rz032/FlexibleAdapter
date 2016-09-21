@@ -52,7 +52,7 @@ public abstract class AbstractExpandableItem<VH extends ExpandableViewHolder, S 
 	}
 
 	@Override
-	public void setExpanded(FlexibleAdapter adapter, boolean expanded) {
+	public void setExpanded(FlexibleAdapter adapter, int position, boolean expanded) {
 		this.mExpanded = expanded;
 	}
 

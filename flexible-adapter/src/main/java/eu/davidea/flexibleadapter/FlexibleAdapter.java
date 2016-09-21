@@ -206,7 +206,7 @@ public class FlexibleAdapter<T extends IFlexible>
 
 	/*--------------*/
     /* CONSTRUCTORS */
-	/*--------------*/
+    /*--------------*/
 
     /**
      * Simple Constructor with NO listeners!
@@ -1855,7 +1855,7 @@ public class FlexibleAdapter<T extends IFlexible>
 
         IExpandable expandable = (IExpandable) item;
         if (!hasSubItems(expandable)) {
-            expandable.setExpanded(this, false);//clear the expanded flag
+            expandable.setExpanded(this, position, false);//clear the expanded flag
             if (DEBUG)
                 Log.w(TAG, "No subItems to Expand on position " + position +
                         " expanded " + expandable.isExpanded(this));
@@ -1882,7 +1882,7 @@ public class FlexibleAdapter<T extends IFlexible>
             mItems.addAll(position % mItems.size() + 1, subItems);
             subItemsCount = subItems.size();
             //Save expanded state
-            expandable.setExpanded(this, true);
+            expandable.setExpanded(this, position, true);
 
             //Automatically smooth scroll the current expandable item to show as much
             // children as possible
@@ -1980,7 +1980,7 @@ public class FlexibleAdapter<T extends IFlexible>
             else mItems.removeAll(subItems);
             subItemsCount = subItems.size();
             //Save expanded state
-            expandable.setExpanded(this, false);
+            expandable.setExpanded(this, position, false);
 
             //Collapse!
             notifyItemRangeRemoved(position + 1, subItemsCount);
@@ -3260,7 +3260,7 @@ public class FlexibleAdapter<T extends IFlexible>
                     mExpandedFilterFlags = new HashSet<>();
                 mExpandedFilterFlags.add(expandable);
             }
-            expandable.setExpanded(this, false);
+            expandable.setExpanded(this, -1, false);
             //Children scan filter
             for (T subItem : getCurrentChildren(expandable)) {
                 //Reuse normal filter for Children
@@ -3270,7 +3270,7 @@ public class FlexibleAdapter<T extends IFlexible>
                 }
             }
             //Expand if filter found text in subItems
-            expandable.setExpanded(this, filtered);
+            expandable.setExpanded(this, -1, filtered);
         }
         //if not filtered already, fallback to Normal filter
         return filtered || filterObject(item, getSearchText());
@@ -3334,7 +3334,7 @@ public class FlexibleAdapter<T extends IFlexible>
                 IExpandable expandable = (IExpandable) item;
                 //Reset expanded flag
                 if (mExpandedFilterFlags != null)
-                    expandable.setExpanded(this, mExpandedFilterFlags.contains(expandable));
+                    expandable.setExpanded(this, -1, mExpandedFilterFlags.contains(expandable));
                 if (hasSubItems(expandable)) {
                     List<T> subItems = expandable.getSubItems();
                     for (T subItem : subItems) {
