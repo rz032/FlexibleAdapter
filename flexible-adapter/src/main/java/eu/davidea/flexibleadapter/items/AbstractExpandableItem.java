@@ -47,7 +47,7 @@ public abstract class AbstractExpandableItem<VH extends ExpandableViewHolder, S 
 	/*--------------------*/
 
 	@Override
-	public boolean isExpanded(FlexibleAdapter adapter) {
+	public boolean isExpanded(FlexibleAdapter adapter, int position) {
 		return mExpanded;
 	}
 

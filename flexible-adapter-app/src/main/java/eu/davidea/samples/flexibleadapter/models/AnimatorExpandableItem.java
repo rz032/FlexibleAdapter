@@ -94,7 +94,7 @@ public class AnimatorExpandableItem
 			holder.mTitle.setText(getTitle());
 		}
 		setSubtitle(String.valueOf(adapter.getCurrentChildren(this).size()) +
-				" subItems (" + (isExpanded(adapter) ? "expanded" : "collapsed") + ")");
+				" subItems (" + (isExpanded(adapter, position) ? "expanded" : "collapsed") + ")");
 		holder.mSubtitle.setText(getSubtitle());
 	}
 

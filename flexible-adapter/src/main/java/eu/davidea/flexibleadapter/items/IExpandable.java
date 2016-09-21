@@ -41,7 +41,7 @@ public interface IExpandable<VH extends ExpandableViewHolder, S extends IFlexibl
 	/* EXPANDABLE METHODS */
 	/*--------------------*/
 
-	boolean isExpanded(FlexibleAdapter adapter);
+	boolean isExpanded(FlexibleAdapter adapter, int position);
 
 	void setExpanded(FlexibleAdapter adapter, int position, boolean expanded);
 

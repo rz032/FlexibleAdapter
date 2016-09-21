@@ -1629,7 +1629,7 @@ public class FlexibleAdapter<T extends IFlexible>
     public boolean isExpanded(@NonNull T item) {
         if (isExpandable(item)) {
             IExpandable expandable = (IExpandable) item;
-            return expandable.isExpanded(this);
+            return expandable.isExpanded(this, -1);
         }
         return false;
     }
@@ -1702,7 +1702,7 @@ public class FlexibleAdapter<T extends IFlexible>
         for (T parent : mItems) {
             if (isExpandable(parent)) {
                 IExpandable expandable = (IExpandable) parent;
-                if (expandable.isExpanded(this) && hasSubItems(expandable)) {
+                if (expandable.isExpanded(this, -1) && hasSubItems(expandable)) {
                     List<T> list = expandable.getSubItems();
                     for (T subItem : list) {
                         //Pick up only no-hidden items
@@ -1858,7 +1858,7 @@ public class FlexibleAdapter<T extends IFlexible>
             expandable.setExpanded(this, position, false);//clear the expanded flag
             if (DEBUG)
                 Log.w(TAG, "No subItems to Expand on position " + position +
-                        " expanded " + expandable.isExpanded(this));
+                        " expanded " + expandable.isExpanded(this, position));
             return 0;
         }
 //		if (DEBUG && !init) {
@@ -1867,7 +1867,7 @@ public class FlexibleAdapter<T extends IFlexible>
 //					" anyParentSelected=" + parentSelected);
 //		}
         int subItemsCount = 0;
-        if (init || !expandable.isExpanded(this) &&
+        if (init || !expandable.isExpanded(this, position) &&
                 (!parentSelected || expandable.getExpansionLevel() <= selectedLevel)) {
 
             //Collapse others expandable if configured so Skip when expanding all is requested
@@ -1966,11 +1966,11 @@ public class FlexibleAdapter<T extends IFlexible>
 
         if (DEBUG && hashItems == null) {
             Log.v(TAG, "Request to Collapse on position=" + position +
-                    " expanded=" + expandable.isExpanded(this) +
+                    " expanded=" + expandable.isExpanded(this, position) +
                     " hasSubItemsSelected=" + hasSubItemsSelected(position, subItems));
         }
 
-        if (expandable.isExpanded(this) && subItemsCount > 0 &&
+        if (expandable.isExpanded(this, position) && subItemsCount > 0 &&
                 (!hasSubItemsSelected(position, subItems) || getPendingRemovedItem(item) != null)) {
 
             //Recursive collapse of all sub expandable
@@ -2315,12 +2315,12 @@ public class FlexibleAdapter<T extends IFlexible>
                                 @NonNull List<T> items, boolean expandParent, @Nullable Object payload) {
         boolean added = false;
         //Expand parent if requested and not already expanded
-        if (expandParent && !parent.isExpanded(this)) {
+        if (expandParent && !parent.isExpanded(this, parentPosition)) {
             expand(parentPosition);
         }
         //Notify the adapter of the new addition to display it and animate it.
         //If parent is collapsed there's no need to notify about the change.
-        if (parent.isExpanded(this)) {
+        if (parent.isExpanded(this, parentPosition)) {
             added = addItems(parentPosition + 1 + Math.max(0, subPosition), items);
         }
         //Notify the parent about the change if requested
@@ -3255,7 +3255,7 @@ public class FlexibleAdapter<T extends IFlexible>
         if (isExpandable(item)) {
             IExpandable expandable = (IExpandable) item;
             //Save which expandable was originally expanded before filtering it out
-            if (expandable.isExpanded(this)) {
+            if (expandable.isExpanded(this, -1)) {
                 if (mExpandedFilterFlags == null)
                     mExpandedFilterFlags = new HashSet<>();
                 mExpandedFilterFlags.add(expandable);
@@ -3341,7 +3341,7 @@ public class FlexibleAdapter<T extends IFlexible>
                         //Reset subItem hidden flag
                         subItem.setHidden(false);
                         //Show subItems for expanded items
-                        if (expandable.isExpanded(this)) {
+                        if (expandable.isExpanded(this, -1)) {
                             i++;
                             if (i < items.size()) items.add(i, subItem);
                             else items.add(subItem);

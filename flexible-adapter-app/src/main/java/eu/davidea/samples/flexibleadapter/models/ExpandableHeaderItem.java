@@ -48,7 +48,7 @@ public class ExpandableHeaderItem
 	}
 
 	@Override
-	public boolean isExpanded(FlexibleAdapter adapter) {
+	public boolean isExpanded(FlexibleAdapter adapter, int position) {
 		return mExpanded;
 	}
 
@@ -114,7 +114,7 @@ public class ExpandableHeaderItem
 			holder.mTitle.setText(getTitle());
 		}
 		setSubtitle(String.valueOf(adapter.getCurrentChildren(this).size()) +
-				" subItems (" + (isExpanded(adapter) ? "expanded" : "collapsed") + ")");
+				" subItems (" + (isExpanded(adapter, position) ? "expanded" : "collapsed") + ")");
 		holder.mSubtitle.setText(getSubtitle());
 	}
 

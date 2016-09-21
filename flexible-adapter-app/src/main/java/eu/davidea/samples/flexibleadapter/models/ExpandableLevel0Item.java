@@ -48,7 +48,7 @@ public class ExpandableLevel0Item
 	}
 
 	@Override
-	public boolean isExpanded(FlexibleAdapter adapter) {
+	public boolean isExpanded(FlexibleAdapter adapter, int position) {
 		return mExpanded;
 	}
 

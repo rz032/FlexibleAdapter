@@ -32,7 +32,7 @@ public class ExpandableItem extends SimpleItem
     }
 
     @Override
-    public boolean isExpanded(FlexibleAdapter adapter) {
+    public boolean isExpanded(FlexibleAdapter adapter, int position) {
         return mExpanded;
     }
 
