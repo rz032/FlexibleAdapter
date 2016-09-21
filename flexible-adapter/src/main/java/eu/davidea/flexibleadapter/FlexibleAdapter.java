@@ -1634,6 +1634,14 @@ public class FlexibleAdapter<T extends IFlexible>
         return false;
     }
 
+    public boolean isExpanded(@NonNull T item, int position) {
+        if (isExpandable(item)) {
+            IExpandable expandable = (IExpandable) item;
+            return expandable.isExpanded(this, position);
+        }
+        return false;
+    }
+
     /**
      * @param item the item to check
      * @return true if the item implements {@link IExpandable} interface, false otherwise

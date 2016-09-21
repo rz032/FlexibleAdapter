@@ -274,7 +274,7 @@ public class StickyHeaderHelper extends OnScrollListener {
 		}
 		IHeader header = mAdapter.getSectionHeader(adapterPosHere);
 		//Header cannot be sticky if it's also an Expandable in collapsed status, RV will raise an exception
-		if (header == null || mAdapter.isExpandable(header) && !mAdapter.isExpanded(header)) {
+		if (header == null || mAdapter.isExpandable(header) && !mAdapter.isExpanded(header, adapterPosHere)) {
 			return RecyclerView.NO_POSITION;
 		}
 		return mAdapter.getGlobalPositionOf(header);
