@@ -1898,12 +1898,12 @@ public class FlexibleAdapter<T extends IFlexible>
             //Expand!
             notifyItemRangeInserted(initialPosition + 1, subItemsCount);
             //Show also the headers of the subItems
-            if (!init && headersShown) {
-                int count = 0;
-                for (T subItem : subItems) {
-                    if (showHeaderOf(initialPosition + (++count), subItem, false)) count++;
-                }
-            }
+//            if (!init && headersShown) {
+//                int count = 0;
+//                for (T subItem : subItems) {
+//                    if (showHeaderOf(initialPosition + (++count), subItem, false)) count++;
+//                }
+//            }
             if (DEBUG) {
                 Log.i(TAG, (init ? "Initially expanded " : "Expanded ") +
                         subItemsCount + " subItems on position=" + initialPosition);
