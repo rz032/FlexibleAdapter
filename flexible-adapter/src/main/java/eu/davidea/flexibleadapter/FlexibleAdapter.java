@@ -1808,6 +1808,9 @@ public class FlexibleAdapter<T extends IFlexible>
      * @since 5.0.0-b1
      */
     public int expand(@IntRange(from = 0) int position) {
+        if(isLooped){
+            position = position % mItems.size();
+        }
         return expand(position, false, false);
     }
 
