@@ -1891,7 +1891,8 @@ public class FlexibleAdapter<T extends IFlexible>
 //            }
 
             //Expand!
-            notifyItemRangeInserted(position - 2, subItemsCount + 2);
+            notifyDataSetChanged();
+//            notifyItemRangeInserted(position - 2, subItemsCount + 2);
 //            notifyItemRangeInserted(position + 1, subItemsCount);
             //Show also the headers of the subItems
             if (!init && headersShown) {
