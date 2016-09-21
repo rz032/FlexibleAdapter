@@ -1890,10 +1890,10 @@ public class FlexibleAdapter<T extends IFlexible>
 
             //Automatically smooth scroll the current expandable item to show as much
             // children as possible
-            if (!init && scrollOnExpand && !expandAll) {
-//                autoScrollWithDelay(initialPosition, subItemsCount, 150L);
-                autoScrollWithDelay(initialPosition, 1, 150L);
-            }
+//            if (!init && scrollOnExpand && !expandAll) {
+////                autoScrollWithDelay(initialPosition, subItemsCount, 150L);
+//                autoScrollWithDelay(initialPosition, 1, 150L);
+//            }
 
             //Expand!
             notifyItemRangeInserted(initialPosition + 1, subItemsCount);
