@@ -206,7 +206,7 @@ public class FlexibleAdapter<T extends IFlexible>
 
 	/*--------------*/
     /* CONSTRUCTORS */
-	/*--------------*/
+    /*--------------*/
 
     /**
      * Simple Constructor with NO listeners!
@@ -356,7 +356,7 @@ public class FlexibleAdapter<T extends IFlexible>
     }
 
 	/*------------------------------*/
-	/* SELECTION METHODS OVERRIDDEN */
+    /* SELECTION METHODS OVERRIDDEN */
 	/*------------------------------*/
 
     /**
@@ -1808,9 +1808,6 @@ public class FlexibleAdapter<T extends IFlexible>
      * @since 5.0.0-b1
      */
     public int expand(@IntRange(from = 0) int position) {
-        if(isLooped){
-            position = position % mItems.size();
-        }
         return expand(position, false, false);
     }
 
@@ -1852,7 +1849,11 @@ public class FlexibleAdapter<T extends IFlexible>
         return expand(getGlobalPositionOf(item), false, init);
     }
 
-    private int expand(int position, boolean expandAll, boolean init) {
+    private int expand(int initialPosition, boolean expandAll, boolean init) {
+        int position = initialPosition;
+        if (isLooped) {
+            position = initialPosition % mItems.size();
+        }
         T item = getItem(position);
         if (!isExpandable(item)) return 0;
 
@@ -1860,7 +1861,7 @@ public class FlexibleAdapter<T extends IFlexible>
         if (!hasSubItems(expandable)) {
             expandable.setExpanded(this, false);//clear the expanded flag
             if (DEBUG)
-                Log.w(TAG, "No subItems to Expand on position " + position +
+                Log.w(TAG, "No subItems to Expand on position " + initialPosition +
                         " expanded " + expandable.isExpanded(this));
             return 0;
         }
@@ -1876,13 +1877,13 @@ public class FlexibleAdapter<T extends IFlexible>
             //Collapse others expandable if configured so Skip when expanding all is requested
             //Fetch again the new position after collapsing all!!
             if (collapseOnExpand && !expandAll && collapseAll(minCollapsibleLevel) > 0) {
-                position = getGlobalPositionOf(item);
+                initialPosition = getGlobalPositionOf(item);
             }
 
             //Every time an expansion is requested, subItems must be taken from the
             // original Object and without the subItems marked hidden (removed)
             List<T> subItems = getExpandableList(expandable);
-            mItems.addAll(position + 1, subItems);
+            mItems.addAll(initialPosition + 1, subItems);
             subItemsCount = subItems.size();
             //Save expanded state
             expandable.setExpanded(this, true);
@@ -1890,21 +1891,21 @@ public class FlexibleAdapter<T extends IFlexible>
             //Automatically smooth scroll the current expandable item to show as much
             // children as possible
             if (!init && scrollOnExpand && !expandAll) {
-                autoScrollWithDelay(position, subItemsCount, 150L);
+                autoScrollWithDelay(initialPosition, subItemsCount, 150L);
             }
 
             //Expand!
-            notifyItemRangeInserted(position + 1, subItemsCount);
+            notifyItemRangeInserted(initialPosition + 1, subItemsCount);
             //Show also the headers of the subItems
             if (!init && headersShown) {
                 int count = 0;
                 for (T subItem : subItems) {
-                    if (showHeaderOf(position + (++count), subItem, false)) count++;
+                    if (showHeaderOf(initialPosition + (++count), subItem, false)) count++;
                 }
             }
             if (DEBUG) {
                 Log.i(TAG, (init ? "Initially expanded " : "Expanded ") +
-                        subItemsCount + " subItems on position=" + position);
+                        subItemsCount + " subItems on position=" + initialPosition);
             }
         }
         return subItemsCount;
