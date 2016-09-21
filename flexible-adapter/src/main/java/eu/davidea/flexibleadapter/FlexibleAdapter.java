@@ -1883,7 +1883,7 @@ public class FlexibleAdapter<T extends IFlexible>
             //Every time an expansion is requested, subItems must be taken from the
             // original Object and without the subItems marked hidden (removed)
             List<T> subItems = getExpandableList(expandable);
-            mItems.addAll(initialPosition + 1, subItems);
+            mItems.addAll(position + 1, subItems);
             subItemsCount = subItems.size();
             //Save expanded state
             expandable.setExpanded(this, true);
